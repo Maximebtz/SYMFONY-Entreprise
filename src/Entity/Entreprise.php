@@ -61,6 +61,11 @@ class Entreprise
         return $this->dateCreation;
     }
 
+    public function getDateCreationString(): ?string
+    {
+        return $this->dateCreation->format('d-m-Y');
+    }
+
     public function setDateCreation(\DateTimeInterface $dateCreation): static
     {
         $this->dateCreation = $dateCreation;

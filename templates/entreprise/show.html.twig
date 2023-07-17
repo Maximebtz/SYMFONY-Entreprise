@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listes des entreprises{% endblock %}
+
+{% block body %}
+    <h1>Détail de l'entreprise</h1>
+    <h2>{{ entreprise.raisonSociale }}</h2>
+    <p>
+       Adresse : {{entreprise.adresse}}<br>
+       Ville : {{entreprise.ville}}<br>
+       Code Postale : {{entreprise.cp}}<br>
+       Date Création : {{entreprise.getDateCreationString}}<br>
+    </p>
+    
+    {% for entreprise in entreprise %}
+        <a href="">{{entreprise.raisonSociale}}</a> <br>
+    {% endfor %}
+
+{% endblock %}

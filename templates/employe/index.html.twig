@@ -4,6 +4,6 @@
 
 {% block body %}
     {% for employe in employes %}
-        <b>{{employe.entreprise.raisonSociale}}</b> {{employe}} <br>
+        <a href="">{{employe}}</a> {{employe.entreprise.raisonSociale}}<br>
     {% endfor %}
 {% endblock %}

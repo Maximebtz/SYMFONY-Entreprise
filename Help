@@ -1,0 +1,16 @@
+DB
+-------------------------
+
+    How can I update my DB ?
+
+    1 -- Console : symfony console make:entity Exemple //Update the DB
+    2 -- Console : symfony console doctrine:schema:update --force //Update without data loss
+
+
+Sythax
+-------------------------
+
+    ~ : concatenate
+    {{}} : open
+    loop : {% for ... in ... %} {% endfor %}
+    Way : {{ path('') }}, {{ path(''), {'id': exemple.id} }}
