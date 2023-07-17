@@ -15,7 +15,7 @@ class Entreprise
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
     #[ORM\Column(length: 100)]
     private ?string $raisonSociale = null;
 
@@ -137,5 +137,10 @@ class Entreprise
         }
 
         return $this;
+    }
+
+
+    public function __toString(){
+        return $this->raisonSociale;
     }
 }
