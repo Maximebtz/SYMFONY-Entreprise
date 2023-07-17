@@ -4,6 +4,6 @@
 
 {% block body %}
     {% for employe in employes %}
-        <a href="">{{employe}}</a> {{employe.entreprise.raisonSociale}}<br>
+        <a href=" {{ path('show_employe', {'id': employe.id}) }}">{{employe}}</a><br>
     {% endfor %}
 {% endblock %}

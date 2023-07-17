@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Listes des entreprises{% endblock %}
+{% block title %}Détail de l'entreprise{% endblock %}
 
 {% block body %}
     <h1>Détail de l'entreprise</h1>
@@ -11,9 +11,26 @@
        Code Postale : {{entreprise.cp}}<br>
        Date Création : {{entreprise.getDateCreationString}}<br>
     </p>
+
+    <h3>Liste des employés :</h3>
+    {% if entreprise.employes | length > 0 %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Employé</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employe in entreprise.employes %}
+                <tr><td>{{ employe }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
     
-    {% for entreprise in entreprise %}
-        <a href="">{{entreprise.raisonSociale}}</a> <br>
-    {% endfor %}
+    {% else %}
+        <p>Aucune employé dans cette entreprise</p>
+    {% endif %}
+    
 
 {% endblock %}
