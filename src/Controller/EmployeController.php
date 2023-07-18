@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Employe; // Importation de la classe d'entité Employe
+use App\Entity\Employe;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Form\EmployeType; // Importation de la classe de formulaire EmployeType
 use App\Repository\EmployeRepository; // Importation de la classe de repository EmployeRepository
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Routing\Annotation\Route; // Importation de l'annotation Route pour définir les routes
 use Symfony\Component\HttpFoundation\Request; // Importation de la classe Request du composant HttpFoundation
 use Symfony\Component\HttpFoundation\Response; // Importation de la classe Response du composant HttpFoundation
-use Symfony\Component\Routing\Annotation\Route; // Importation de l'annotation Route pour définir les routes
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController; // Importation de la classe de contrôleur de base
 
 class EmployeController extends AbstractController
@@ -28,10 +28,13 @@ class EmployeController extends AbstractController
 
     // Méthode pour créer un nouvel employé
     #[Route('/employe/new', name: 'new_employe')] // Définition de la route avec un paramètre 'id' et du nom de la route
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/employe/{id}/edit}', name: 'edit_employe')] // Définition de la route avec un paramètre 'id' et du nom de la route
+    public function new_edit(Employe $employe = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Création d'une nouvelle instance de l'entité Employe
-        $employe = new Employe();
+
+        if(!$employe){// Création d'une nouvelle instance de l'entité Employe
+            $employe = new Employe();
+        }
 
         // Création d'un formulaire basé sur EmployeType et associé à l'entité Employe
         $form = $this->createForm(EmployeType::class, $employe);
@@ -55,7 +58,18 @@ class EmployeController extends AbstractController
         // Rendu du template 'employe/new.html.twig' en passant le formulaire à afficher
         return $this->render('employe/new.html.twig', [
             'formAddEmploye' => $form,
+            'edit' => $employe->getId()
         ]);
+    }
+
+    // Méthode pour afficher les suppr un employé
+    #[Route('/employe/{id}/delete', name: 'delete_employe')] // Définition de la route avec un paramètre 'id' et du nom de la route
+    public function delete(Employe $employe, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($employe);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_employe');
     }
 
     // Méthode pour afficher les détails d'un employé

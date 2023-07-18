@@ -7,7 +7,13 @@
     <h1>Liste des entreprises</h1>
     
     {% for entreprise in entreprises %}
-        <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{entreprise.raisonSociale}}</a> <br>
+        <div class="list-entr">
+            <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{entreprise.raisonSociale}}</a>
+            <div class="btns">
+                <a class="btn btn-warning" href="{{ path('edit_entreprise', {'id': entreprise.id}) }}"> Edit </a>  
+                <a class="btn btn-danger" href="{{ path('delete_entreprise', {'id': entreprise.id})}}">Supp</a>
+            </div>
+        </div>
     {% endfor %}
 
 {% endblock %}

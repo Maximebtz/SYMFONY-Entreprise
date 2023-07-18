@@ -28,10 +28,14 @@ class EntrepriseController extends AbstractController
 
     // Méthode pour créer une nouvelle entreprise
     #[Route('/entreprise/new', name: 'new_entreprise')] // Définition de la route et du nom de la route
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/entreprise/{id}/edit', name: 'edit_entreprise')] // Définition de la route et du nom de la route
+    public function new_edit(Entreprise $entreprise = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Création d'une nouvelle instance de l'entité Entreprise
-        $entreprise = new Entreprise();
+
+        if(!$entreprise) {
+            // Création d'une nouvelle instance de l'entité Entreprise
+            $entreprise = new Entreprise();
+        }
         // ...
 
         // Création d'un formulaire basé sur EntrepriseType et associé à l'entité Entreprise
@@ -56,7 +60,18 @@ class EntrepriseController extends AbstractController
         // Rendu du template 'entreprise/new.html.twig' en passant le formulaire à afficher
         return $this->render('entreprise/new.html.twig', [
             'formAddEntreprise' => $form,
+            'edit' => $entreprise->getId()
         ]);
+    }
+    
+    // Méthode pour supp une entreprise
+    #[Route('/entreprise/{id}/delete', name: 'delete_entreprise')] // Définition de la route avec un paramètre 'id' et du nom de la route
+    public function delete(Entreprise $entreprise, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($entreprise);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_entreprise');
     }
 
     // Méthode pour afficher les détails d'une entreprise

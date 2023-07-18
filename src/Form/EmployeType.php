@@ -47,6 +47,8 @@ class EmployeType extends AbstractType
             ])
             // Ajout d'un champ 'ville' de type TextType (champ texte)
             ->add('ville', TextType::class, [
+                // Mettre la ville facultative
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]

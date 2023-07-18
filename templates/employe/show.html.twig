@@ -11,5 +11,10 @@
        Nom : {{employe.nom}}<br>
        Date de naissance : {{employe.getDateNaissanceString}}<br>
        Date d'embauche : {{employe.getDateEmbaucheString}}<br>
+       Ville : {% if employe.ville %}
+                    {{employe.ville}}
+                {% else %}
+                    Aucune ville renseignée
+                {% endif %}<br>
     </p>
 {% endblock %}
