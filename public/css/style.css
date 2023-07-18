@@ -4,10 +4,14 @@
   box-sizing: border-box;
 }
 
+/************** Body **************/
 body {
   padding: 50px;
 }
 
+/************** Header **************/
+/************** Wrapper **************/
+/************** Footer *************/
 .list-entr {
   display: flex;
   justify-content: space-between;

@@ -4,10 +4,27 @@
     box-sizing: border-box;
 }
 
+/************** Body **************/
 body {
     padding: 50px;
 }
 
+/************** Header **************/
+header {
+    nav{
+
+    }
+}
+
+/************** Wrapper **************/
+.wrapper {
+    
+}
+
+/************** Footer *************/
+footer {
+
+}
 .list-entr {
     display: flex;
     justify-content: space-between;
@@ -15,3 +32,4 @@ body {
     margin: 10px 0;
     width: 300px;
 }
+
